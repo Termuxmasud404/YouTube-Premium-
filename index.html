@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Dream Chaser - Premium YouTube App</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #111;
+      --bg-light: #f9f9f9;
+      --text-dark: #fff;
+      --text-light: #000;
+      --primary: #ff0000;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-dark);
+      transition: all 0.3s ease;
+    }
+
+    header {
+      background: var(--primary);
+      padding: 20px;
+      text-align: center;
+      font-size: 30px;
+      font-weight: bold;
+      letter-spacing: 1px;
+      color: #fff;
+      animation: slideIn 1s ease-out;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(-100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .typing {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 20px;
+      color: #ccc;
+    }
+
+    .container {
+      padding: 20px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 20px;
+    }
+
+    .video {
+      background: #222;
+      padding: 10px;
+      border-radius: 12px;
+      transition: transform 0.3s ease;
+    }
+
+    .video:hover {
+      transform: scale(1.03);
+    }
+
+    iframe {
+      width: 100%;
+      height: 200px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .toggle-mode {
+      position: fixed;
+      top: 15px;
+      right: 20px;
+      padding: 10px 15px;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    .back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: var(--primary);
+      color: #fff;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #000;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+  <button class="toggle-mode" onclick="toggleMode()">Toggle Mode</button>
+
+  <header>The Dream Chaser</header>
+  <div class="typing" id="typingText"></div>
+
+  <div class="container" id="videoContainer">
+    <!-- ভিডিও লোড হবে -->
+  </div>
+
+  <button class="back-to-top" onclick="scrollToTop()" id="backToTop">Top</button>
+
+  <footer>
+    &copy; 2025 The Dream Chaser | Made by Masud Rana
+  </footer>
+
+  <script>
+    // টাইপিং টেক্সট
+    const typingText = "Welcome to The Dream Chaser - Watch, Laugh & Learn!";
+    let i = 0;
+    function typeEffect() {
+      if (i < typingText.length) {
+        document.getElementById("typingText").innerHTML += typingText.charAt(i);
+        i++;
+        setTimeout(typeEffect, 60);
+      }
+    }
+    typeEffect();
+
+    // ভিডিও ID গুলো
+    const videoIds = [
+      "dQw4w9WgXcQ",
+      "hY7m5jjJ9mM",
+      "3JZ_D3ELwOQ"
+    ];
+    const container = document.getElementById("videoContainer");
+    videoIds.forEach(id => {
+      const video = document.createElement("div");
+      video.className = "video";
+      video.innerHTML = `<iframe src="https://www.youtube.com/embed/${id}" allowfullscreen></iframe>`;
+      container.appendChild(video);
+    });
+
+    // Dark/Light mode toggle
+    let darkMode = true;
+    function toggleMode() {
+      darkMode = !darkMode;
+      document.body.style.backgroundColor = darkMode ? "var(--bg-dark)" : "var(--bg-light)";
+      document.body.style.color = darkMode ? "var(--text-dark)" : "var(--text-light)";
+    }
+
+    // Back to top
+    const backToTop = document.getElementById("backToTop");
+    window.onscroll = function () {
+      if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+        backToTop.style.display = "block";
+      } else {
+        backToTop.style.display = "none";
+      }
+    };
+    function scrollToTop() {
+      document.body.scrollTop = 0;
+      document.documentElement.scrollTop = 0;
+    }
+  </script>
+
+</body>
+</html>
