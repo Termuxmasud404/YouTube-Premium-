@@ -1,19 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html><html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>The Dream Chaser</title>
-
-  <!-- AOS & Typed.js -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
-  <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Dream Chaser</title>  <!-- AOS & Typed.js -->  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>  <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+      color: white;
       transition: 0.3s;
+      scroll-behavior: smooth;
+      text-align: center;
     }
     .light-mode {
       background: #f0f0f0;
@@ -23,21 +21,81 @@
       background: #121212;
       color: white;
     }
-    header {
-      padding: 20px;
-      text-align: center;
-    }
-    #clockBox {
-      font-size: 18px;
-      margin: 10px;
-    }
-    #visitorCount {
-      color: green;
+    .rainbow-text {
+      font-size: 2.5em;
       font-weight: bold;
+      animation: blink 1s infinite, rainbow 5s linear infinite;
     }
-    input, button {
-      padding: 10px;
-      margin: 10px;
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes rainbow {
+      0% { color: red; }
+      20% { color: orange; }
+      40% { color: yellow; }
+      60% { color: green; }
+      80% { color: blue; }
+      100% { color: violet; }
+    }
+    .profile img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      border: 4px solid white;
+      margin-top: 15px;
+    }
+    .button {
+      padding: 10px 20px;
+      background: #4267B2;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    .typing-text {
+      font-size: 1.3em;
+      margin: 30px auto;
+      white-space: nowrap;
+    }
+    .quote-box {
+      margin: 20px auto;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      max-width: 600px;
+      font-size: 1.2em;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 1.2em;
+      animation: rainbow 3s linear infinite, blink 1s infinite;
+    }
+    .section {
+      padding: 20px;
+    }
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      padding: 10px 15px;
+      font-size: 1em;
+      background: #333;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      display: none;
+    }
+    #progressBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 4px;
+      background: #00bcd4;
+      width: 0%;
+      z-index: 9999;
     }
     ul {
       list-style: none;
@@ -56,83 +114,34 @@
       background: #333;
       color: white;
     }
-    /* Back to Top Button */
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      display: none;
-      cursor: pointer;
-    }
-    /* Scroll Progress Bar */
-    #progressBar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: #00bcd4;
-      width: 0%;
-      z-index: 9999;
-    }
-  </style>
-</head>
-<body class="light-mode">
-
-  <!-- Scroll Progress -->
-  <div id="progressBar"></div>
-
-  <!-- Header -->
-  <header>
-    <h1 data-aos="fade-down">The Dream Chaser</h1>
-    <h3><span id="typed"></span></h3>
-
-    <div id="clockBox">
-      <span id="date"></span> | <span id="time"></span>
-    </div>
-    <div>
-      Visitors Count: <span id="visitorCount">Loading...</span>
-    </div>
-    <button onclick="toggleMode()">Toggle Dark/Light Mode</button>
-  </header>
-
-  <!-- Comments -->
-  <section data-aos="fade-up">
-    <h2>Comments</h2>
-    <input type="text" id="commentInput" placeholder="Write a comment..."/>
+  </style></head>
+<body class="light-mode">  <div id="progressBar"></div>  <div class="rainbow-text">THE DREAM CHASER</div>  <div class="profile">
+    <img src="masud.jpg" alt="Masud Rana">
+    <br>
+    <button class="button" onclick="window.open('https://www.facebook.com/profile.php?id=100078423821878', '_blank')">Visit Facebook</button>
+  </div>  <div class="quote-box">
+    "জীবনে বড়, কিছু করে দেখাও! প্রতিদিন শেখো, প্রতিদিন এগিয়ে যাও। তুমি পারবে, কারণ তুমি একজন স্বপ্নবাজ।"
+  </div>  <h3><span id="typed" class="typing-text"></span></h3>  <div class="section">
+    <span id="date"></span> | <span id="time"></span>
+    <div>Visitors Count: <span id="visitorCount">Loading...</span></div>
+  </div>  <div class="section">
+    <h2 data-aos="fade-up">Comments</h2>
+    <input type="text" id="commentInput" placeholder="Write a comment...">
     <button onclick="postComment()">Post</button>
     <ul id="commentsList"></ul>
-  </section>
+  </div>  <div class="footer">Developer By Masud Rana</div><button onclick="toggleMode()">Toggle Dark/Light Mode</button> <button id="backToTop" onclick="scrollToTop()">Top</button>
 
-  <!-- Back to Top Button -->
-  <button id="backToTop" onclick="scrollToTop()">Top</button>
-
-  <!-- Background Music -->
   <audio autoplay loop>
     <source src="https://www.bensound.com/bensound-music/bensound-dreams.mp3" type="audio/mpeg">
     Your browser does not support audio.
-  </audio>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-  <script>
+  </audio>  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>  <script>
     AOS.init();
 
-    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyAVjsiTMbEt6waEBu-s4FpvSlDlrBtIRR8",
       authDomain: "the-dream-chaser-project.firebaseapp.com",
       projectId: "the-dream-chaser-project",
-      storageBucket: "the-dream-chaser-project.firebasestorage.app",
+      storageBucket: "the-dream-chaser-project.appspot.com",
       messagingSenderId: "163574465822",
       appId: "1:163574465822:web:07c19784b944f2778d350f"
     };
@@ -158,14 +167,12 @@
       }
     });
 
-    // Visitor Counter
     fetch('https://api.countapi.xyz/hit/the-dream-chaser/visits')
       .then(res => res.json())
       .then(data => {
         document.getElementById('visitorCount').innerText = data.value;
       });
 
-    // Clock
     function updateClock() {
       const now = new Date();
       document.getElementById('date').textContent = now.toLocaleDateString();
@@ -174,19 +181,15 @@
     setInterval(updateClock, 1000);
     updateClock();
 
-    // Dark/Light Mode
     function toggleMode() {
       document.body.classList.toggle('dark-mode');
       document.body.classList.toggle('light-mode');
     }
 
-    // Back to Top
     window.onscroll = function () {
       const btn = document.getElementById("backToTop");
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       btn.style.display = scrollTop > 300 ? "block" : "none";
-
-      // Scroll progress bar
       const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
       const scrollProgress = (scrollTop / scrollHeight) * 100;
       document.getElementById("progressBar").style.width = scrollProgress + "%";
@@ -195,13 +198,11 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
-    // Typed.js Effect
-    const typed = new Typed("#typed", {
-      strings: ["Welcome to My World", "Follow Your Dreams", "Believe in Yourself"],
+    new Typed("#typed", {
+      strings: ["Welcome to The Dream Chaser!", "Learn, Build, Achieve.", "Never Stop Dreaming.", "Masud Rana is chasing his dreams."],
       typeSpeed: 50,
       backSpeed: 25,
       loop: true
     });
-  </script>
-</body>
+  </script></body>
 </html>
