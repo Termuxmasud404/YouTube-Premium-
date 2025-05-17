@@ -1,311 +1,526 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth" >
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The Dream Chaser - Blog & Features</title>
-  <style>
-    /* Animate Gradient Background */
-    @keyframes gradientBG {
-      0% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-      100% {
-        background-position: 0% 50%;
-      }
-    }
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>The Dream Chaser - Portfolio & Blog</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  body {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: #eee;
+    min-height: 100vh;
+    position: relative;
+    overflow-x: hidden;
+  }
 
-    body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      margin: 0;
-      /* Gradient background animation */
-      background: linear-gradient(270deg, #FF416C, #FF4B2B, #1FA2FF, #12D8FA, #A6FFCB);
-      background-size: 1000% 1000%;
-      animation: gradientBG 30s ease infinite;
-      color: #222;
-      transition: color 0.3s;
-      min-height: 100vh;
-    }
+  /* Preloader */
+  #preloader {
+    position: fixed; inset: 0; background:#222;
+    display:flex; align-items:center; justify-content:center;
+    z-index: 9999;
+  }
+  #preloader span {
+    width: 20px; height: 20px;
+    border: 3px solid transparent;
+    border-top-color: #fff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+  @keyframes spin {
+    100% { transform: rotate(360deg); }
+  }
 
-    a {
-      color: #0077cc;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+  /* Container */
+  .container {
+    max-width: 1100px;
+    margin: 80px auto 40px;
+    padding: 0 20px;
+  }
 
-    /* Container */
-    .container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.85);
-      border-radius: 15px;
-      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-      margin-top: 40px;
-      margin-bottom: 40px;
-    }
+  /* Logo with typing effect */
+  header {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 48px;
+    font-weight: 900;
+    letter-spacing: 6px;
+    color: #fff;
+    font-family: 'Courier New', Courier, monospace;
+    height: 60px;
+  }
+  .typing {
+    border-right: 3px solid #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing 3s steps(15, end), blink 0.75s step-end infinite;
+  }
+  @keyframes typing {
+    from { width: 0 }
+    to { width: 220px }
+  }
+  @keyframes blink {
+    50% { border-color: transparent }
+  }
 
-    /* Logo */
-    header {
-      text-align: center;
-      margin-bottom: 30px;
-    }
-    header h1 {
-      font-size: 4rem;
-      font-weight: 900;
-      background: linear-gradient(45deg, #FF416C, #FF4B2B);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin: 0;
-      user-select: none;
-      letter-spacing: 3px;
-      text-shadow: 1px 1px 4px rgba(255, 75, 43, 0.5);
-    }
+  /* Scroll animation */
+  .fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+  .fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
 
-    /* Filter Buttons */
-    .filter-buttons {
-      text-align: center;
-      margin-bottom: 20px;
-    }
-    .filter-buttons button {
-      background: #FF416C;
-      border: none;
-      padding: 8px 18px;
-      margin: 5px;
-      border-radius: 30px;
-      cursor: pointer;
-      font-weight: 600;
-      color: white;
-      box-shadow: 0 4px 10px rgba(255,65,108,0.3);
-      transition: background-color 0.3s, transform 0.2s;
-    }
-    .filter-buttons button.active,
-    .filter-buttons button:hover {
-      background: #FF4B2B;
-      transform: scale(1.1);
-      box-shadow: 0 6px 15px rgba(255,75,43,0.5);
-    }
+  /* Back to top */
+  #backToTop {
+    position: fixed;
+    bottom: 40px; right: 40px;
+    background: #fff;
+    color: #764ba2;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    transition: background 0.3s ease;
+    z-index: 1000;
+  }
+  #backToTop:hover {
+    background: #667eea;
+    color: #fff;
+  }
 
-    /* Search Input */
-    #searchInput {
-      width: 100%;
-      padding: 14px 20px;
-      margin-bottom: 25px;
-      font-size: 1rem;
-      border-radius: 30px;
-      border: 2px solid #FF416C;
-      outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      box-shadow: 0 0 15px rgba(255, 65, 108, 0.4);
-    }
-    #searchInput:focus {
-      border-color: #FF4B2B;
-      box-shadow: 0 0 25px rgba(255, 75, 43, 0.7);
-    }
+  /* Blog search & filter */
+  .blog-controls {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .blog-controls input[type="search"],
+  .blog-controls select {
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    flex-grow: 1;
+    max-width: 300px;
+  }
 
-    /* Blog Posts */
-    .blog-post {
-      background: white;
-      border-radius: 15px;
-      padding: 25px 25px 30px;
-      margin-bottom: 30px;
-      box-shadow: 0 8px 25px rgba(255, 75, 43, 0.15);
-      transition: box-shadow 0.3s;
-    }
-    .blog-post:hover {
-      box-shadow: 0 12px 40px rgba(255, 75, 43, 0.35);
-    }
-    .blog-post h3 {
-      margin-top: 0;
-      color: #FF416C;
-      letter-spacing: 1.5px;
-    }
-    .blog-post p {
-      line-height: 1.7;
-      font-size: 1.05rem;
-    }
+  /* Blog posts */
+  .blog-posts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    gap: 20px;
+  }
+  .post {
+    background: rgba(255 255 255 / 0.1);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgb(0 0 0 / 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.3s ease;
+  }
+  .post:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 25px rgb(0 0 0 / 0.4);
+  }
+  .post h3 {
+    margin-bottom: 10px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .post p {
+    flex-grow: 1;
+    font-size: 14px;
+    line-height: 1.4;
+    color: #ddd;
+  }
+  .post .category {
+    margin-top: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #a3a3a3;
+  }
 
-    /* Comments Section */
-    #comments {
-      background: white;
-      padding: 30px 30px 35px;
-      border-radius: 15px;
-      margin-top: 50px;
-      box-shadow: 0 8px 25px rgba(255, 75, 43, 0.15);
-    }
-    #comments h3 {
-      margin-top: 0;
-      margin-bottom: 20px;
-      color: #FF416C;
-      letter-spacing: 1.5px;
-    }
-    #comments textarea,
-    #comments input[type="text"],
-    #comments input[type="email"] {
-      width: 100%;
-      padding: 15px 18px;
-      margin-bottom: 18px;
-      border-radius: 15px;
-      border: 2px solid #FF416C;
-      font-size: 1rem;
-      outline: none;
-      transition: border-color 0.3s, box-shadow 0.3s;
-      resize: vertical;
-      box-shadow: 0 0 12px rgba(255, 65, 108, 0.25);
-      font-family: inherit;
-    }
-    #comments textarea:focus,
-    #comments input[type="text"]:focus,
-    #comments input[type="email"]:focus {
-      border-color: #FF4B2B;
-      box-shadow: 0 0 20px rgba(255, 75, 43, 0.6);
-    }
-    #comments button {
-      background: #FF416C;
-      color: white;
-      border: none;
-      padding: 15px 35px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 1.1rem;
-      transition: background-color 0.3s, box-shadow 0.3s;
-      box-shadow: 0 6px 18px rgba(255, 65, 108, 0.4);
-    }
-    #comments button:hover {
-      background: #d83656;
-      box-shadow: 0 8px 25px rgba(216, 54, 86, 0.7);
-    }
+  /* Comment box */
+  .comment-section {
+    margin-top: 30px;
+    background: rgba(255 255 255 / 0.1);
+    padding: 15px;
+    border-radius: 10px;
+  }
+  .comment-section h4 {
+    margin-bottom: 15px;
+  }
+  .comment-section textarea {
+    width: 100%;
+    min-height: 80px;
+    border-radius: 8px;
+    padding: 10px;
+    border: none;
+    resize: vertical;
+    font-size: 15px;
+  }
+  .comment-section button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    border: none;
+    background: #764ba2;
+    color: #fff;
+    font-weight: 700;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .comment-section button:hover {
+    background: #667eea;
+  }
 
-    /* Comments List */
-    #commentList {
-      margin-top: 25px;
-    }
-    #commentList div {
-      background: #ffe6ea;
-      padding: 15px 20px;
-      border-radius: 12px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 12px rgba(255, 65, 108, 0.15);
-      font-size: 1rem;
-      color: #5a212f;
-      word-wrap: break-word;
-    }
+  /* Testimonials */
+  .testimonials {
+    margin-top: 50px;
+    padding: 30px 20px;
+    background: rgba(255 255 255 / 0.15);
+    border-radius: 15px;
+  }
+  .testimonials h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    font-size: 28px;
+  }
+  .testimonial {
+    margin-bottom: 20px;
+    background: rgba(0 0 0 / 0.25);
+    padding: 15px;
+    border-radius: 12px;
+    color: #fff;
+  }
+  .testimonial p {
+    font-style: italic;
+    margin-bottom: 8px;
+  }
+  .testimonial .author {
+    font-weight: 700;
+    text-align: right;
+  }
 
-    /* Responsive */
-    @media(max-width: 600px) {
-      header h1 {
-        font-size: 3rem;
-      }
-      .filter-buttons button {
-        padding: 8px 12px;
-        margin: 4px;
-        font-size: 0.9rem;
-      }
-    }
-  </style>
+  /* Skills with progress bars */
+  .skills {
+    margin-top: 50px;
+  }
+  .skills h2 {
+    margin-bottom: 25px;
+    text-align: center;
+  }
+  .skill {
+    margin-bottom: 15px;
+  }
+  .skill-name {
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #fff;
+  }
+  .progress {
+    width: 100%;
+    background: rgba(255 255 255 / 0.2);
+    border-radius: 20px;
+    height: 18px;
+    overflow: hidden;
+  }
+  .progress-bar {
+    height: 100%;
+    background: #667eea;
+    width: 0;
+    border-radius: 20px;
+    transition: width 2s ease;
+  }
+
+  /* Stats */
+  .stats {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;
+    color: #fff;
+  }
+  .stat {
+    flex: 1 1 150px;
+  }
+  .stat-number {
+    font-size: 36px;
+    font-weight: 900;
+    margin-bottom: 5px;
+  }
+  .stat-label {
+    font-size: 16px;
+  }
+
+  /* Image gallery */
+  .gallery {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 15px;
+  }
+  .gallery img {
+    width: 100%;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+  }
+  .gallery img:hover {
+    transform: scale(1.05);
+  }
+
+  /* Lightbox */
+  #lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.85);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+  }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    border-radius: 10px;
+    box-shadow: 0 0 20px #000;
+  }
+  #lightbox:target {
+    display: flex;
+  }
+
+  /* Social share */
+  .social-share {
+    margin-top: 30px;
+    text-align: center;
+  }
+  .social-share button {
+    background: #764ba2;
+    border: none;
+    color: #fff;
+    padding: 10px 14px;
+    margin: 0 6px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.3s ease;
+  }
+  .social-share button:hover {
+    background: #667eea;
+  }
+
+  /* Parallax background effect */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1920&q=80') no-repeat center center/cover;
+    opacity: 0.2;
+    z-index: -1;
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    header { font-size: 36px; }
+    .stats { flex-direction: column; gap: 20px; }
+  }
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <h1>The Dream Chaser</h1>
-    </header>
 
-    <!-- Search Bar -->
-    <input type="text" id="searchInput" onkeyup="searchPosts()" placeholder="Search blog posts..." />
+<!-- Preloader -->
+<div id="preloader"><span></span></div>
 
-    <!-- Blog Category Filter -->
-    <div class="filter-buttons">
-      <button class="active" onclick="filterCategory('all', this)">All</button>
-      <button onclick="filterCategory('motivation', this)">Motivation</button>
-      <button onclick="filterCategory('success', this)">Success</button>
-      <button onclick="filterCategory('inspiration', this)">Inspiration</button>
-      <button onclick="filterCategory('life', this)">Life</button>
-    </div>
+<header><div class="typing">THE DREAM CHASER</div></header>
 
-    <!-- Blog Posts -->
-    <div id="blogPosts">
-      <div class="blog-post" data-category="motivation">
-        <h3>নিজেকে উৎসাহিত রাখার উপায়</h3>
-        <p>প্রতিদিন নিজেকে নতুন করে উৎসাহিত করতে হলে নিজের লক্ষ্য স্পষ্ট থাকা জরুরি।</p>
-      </div>
-      <div class="blog-post" data-category="success">
-        <h3>সাফল্যের পথে ছোট ছোট ধাপ</h3>
-        <p>সাফল্য অর্জন করতে হলে ধৈর্য্য ধরে ধাপে ধাপে কাজ করতে হয়।</p>
-      </div>
-      <div class="blog-post" data-category="inspiration">
-        <h3>অনুপ্রেরণার গল্প</h3>
-        <p>অনুপ্রেরণামূলক মানুষের গল্প শুনে আমরা নিজেদের জীবনকে নতুন দিশা দিতে পারি।</p>
-      </div>
-      <div class="blog-post" data-category="life">
-        <h3>জীবনের মূল্যবান পাঠ</h3>
-        <p>জীবন থেকে শিখতে পারা হলো সবচেয়ে বড় সম্পদ।</p>
-      </div>
-      <div class="blog-post" data-category="motivation">
-        <h3>প্রতিদিনের অনুপ্রেরণা</h3>
-        <p>কীভাবে প্রতিদিন নিজের অনুপ্রেরণা ধরে রাখবে তার কিছু চমৎকার টিপস।</p>
-      </div>
-    </div>
+<div class="container">
 
-    <!-- Comment Box -->
-    <section id="comments">
-      <h3>মন্তব্য লিখুন</h3>
-      <form id="commentForm" onsubmit="submitComment(event)">
-        <textarea id="commentText" placeholder="আপনার মন্তব্য লিখুন..." rows="4" required></textarea>
-        <input type="text" id="commentName" placeholder="আপনার নাম" required />
-        <input type="email" id="commentEmail" placeholder="আপনার ইমেইল" required />
-        <button type="submit">মন্তব্য পাঠান</button>
-      </form>
-      <div id="commentList"></div>
-    </section>
+  <!-- Blog Controls -->
+  <div class="blog-controls fade-in">
+    <input type="search" id="searchInput" placeholder="Search posts..." />
+    <select id="categoryFilter">
+      <option value="all">All Categories</option>
+      <option value="technology">Technology</option>
+      <option value="lifestyle">Lifestyle</option>
+      <option value="travel">Travel</option>
+    </select>
   </div>
 
-  <script>
-    // Filter Categories
-    function filterCategory(category, btn) {
-      document.querySelectorAll('.filter-buttons button').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  <!-- Blog Posts -->
+  <section class="blog-posts" id="blogPosts">
 
-      const posts = document.querySelectorAll('.blog-post');
-      posts.forEach(post => {
-        if(category === 'all' || post.dataset.category === category) {
-          post.style.display = 'block';
-        } else {
-          post.style.display = 'none';
-        }
-      });
-    }
+    <article class="post" data-category="technology">
+      <h3>Latest Tech Trends in 2025</h3>
+      <p>Discover the cutting-edge technologies shaping the future, including AI advancements and sustainable computing.</p>
+      <div class="category">Category: Technology</div>
+    </article>
 
-    // Search Functionality
-    function searchPosts() {
-      const input = document.getElementById('searchInput').value.toLowerCase();
-      const posts = document.querySelectorAll('.blog-post');
-      posts.forEach(post => {
-        const title = post.querySelector('h3').textContent.toLowerCase();
-        const content = post.querySelector('p').textContent.toLowerCase();
-        if(title.includes(input) || content.includes(input)) {
-          post.style.display = 'block';
-        } else {
-          post.style.display = 'none';
-        }
-      });
-    }
+    <article class="post" data-category="lifestyle">
+      <h3>Healthy Living Tips</h3>
+      <p>Simple but effective habits to boost your physical and mental health every day.</p>
+      <div class="category">Category: Lifestyle</div>
+    </article>
 
-    // Comment Form Submit
-    function submitComment(e) {
-      e.preventDefault();
-      const text = document.getElementById('commentText').value.trim();
-      const name = document.getElementById('commentName').value.trim();
-      const email = document.getElementById('commentEmail').value.trim();
+    <article class="post" data-category="travel">
+      <h3>Top 10 Travel Destinations</h3>
+      <p>Explore breathtaking places to visit in 2025 for unforgettable experiences.</p>
+      <div class="category">Category: Travel</div>
+    </article>
 
-      if(text && name && email) {
-        const commentList = document.getElementById('commentList');
+    <article class="post" data-category="technology">
+      <h3>Understanding Quantum Computing</h3>
+      <p>An introduction to the fascinating world of quantum computers and their potential impact.</p>
+      <div class="category">Category: Technology</div>
+    </article>
 
-        const commentDiv = document.createElement('div');
-        commentDiv.textContent = `${name} says: ${text}`;
-        commentList.prepend(commentDiv);
+    <article class="post" data-category="lifestyle">
+      <h3>Mindfulness and Meditation</h3>
+      <p>Learn how mindfulness can improve your focus and reduce stress effectively.</p>
+      <div class="category">Category: Lifestyle</div>
+    </article>
+
+  </section>
+
+  <!-- Comment Box -->
+  <div class="comment-section fade-in" id="commentSection">
+    <h4>Leave a Comment</h4>
+    <textarea id="commentInput" placeholder="Write your comment here..."></textarea>
+    <button onclick="submitComment()">Submit</button>
+    <div id="commentsList" style="margin-top:15px;"></div>
+  </div>
+
+  <!-- Testimonials -->
+  <section class="testimonials fade-in">
+    <h2>What People Say</h2>
+    <div class="testimonial">
+      <p>"Amazing content and clear explanations. The Dream Chaser really helped me learn!"</p>
+      <div class="author">- Rahim Hossain</div>
+    </div>
+    <div class="testimonial">
+      <p>"অসাধারণ ওয়েবসাইট, খুব সুন্দর ডিজাইন এবং ইউজার ফ্রেন্ডলি।"</p>
+      <div class="author">- সুমাইয়া খানম</div>
+    </div>
+    <div class="testimonial">
+      <p>"Highly recommended for anyone who wants to grow their skills online."</p>
+      <div class="author">- John Doe</div>
+    </div>
+    <div class="testimonial">
+      <p>"সাইটটি ব্যবহার করে আমি অনেক কিছু শিখেছি, ধন্যবাদ।"</p>
+      <div class="author">- মেহেদী হাসান</div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section class="skills fade-in">
+    <h2>My Skills</h2>
+    <div class="skill">
+      <div class="skill-name">HTML & CSS</div>
+      <div class="progress"><div class="progress-bar" style="width: 90%;"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">JavaScript</div>
+      <div class="progress"><div class="progress-bar" style="width: 80%;"></div></div>
+    </div>
+    <div class="skill">
+      <div class="skill-name">Python</div>
+      <div class="progress"><div class="progress-bar" style="width: 70%;"></div></div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="stats fade-in">
+    <div class="stat">
+      <div class="stat-number" data-target="150">0</div>
+      <div class="stat-label">Projects Completed</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number" data-target="300">0</div>
+      <div class="stat-label">Happy Clients</div>
+    </div>
+    <div class="stat">
+      <div class="stat-number" data-target="1200">0</div>
+      <div class="stat-label">Hours Worked</div>
+    </div>
+  </section>
+
+  <!-- Image Gallery -->
+  <section class="gallery fade-in">
+    <img src="https://source.unsplash.com/400x300/?nature" alt="Nature" tabindex="0" onclick="openLightbox(this.src)" />
+    <img src="https://source.unsplash.com/400x300/?city" alt="City" tabindex="0" onclick="openLightbox(this.src)" />
+    <img src="https://source.unsplash.com/400x300/?technology" alt="Tech" tabindex="0" onclick="openLightbox(this.src)" />
+    <img src="https://source.unsplash.com/400x300/?art" alt="Art" tabindex="0" onclick="openLightbox(this.src)" />
+  </section>
+
+  <!-- Social Share -->
+  <div class="social-share fade-in">
+    <button onclick="share('facebook')">Facebook</button>
+    <button onclick="share('twitter')">Twitter</button>
+    <button onclick="share('linkedin')">LinkedIn</button>
+  </div>
+
+</div>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+  <img src="" alt="Gallery Image" />
+</div>
+
+<!-- Back to Top Button -->
+<button id="backToTop" title="Back to top">&#8679;</button>
+
+<script>
+  // Preloader hide
+  window.addEventListener('load', () => {
+    document.getElementById('preloader').style.display = 'none';
+  });
+
+  // Scroll animation observer
+  const faders = document.querySelectorAll('.fade-in');
+  const appearOptions = { threshold: 0.3 };
+  const appearOnScroll = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, appearOptions);
+  faders.forEach(fader => {
+    appearOnScroll.observe(fader);
+  });
+
+  // Back to top button logic
+  const backToTopBtn = document.getElementById('backToTop');
+  window.addEventListener('scroll', () => {
+    if(window.scrollY > 300) backToTopBtn.style.display = 'block';
+    else backToTopBtn.style.display = 'none';
+  });
+  backToTopBtn.addEventListener('click', () => {
+    window.scrollTo({top: 0, behavior: 'smooth'});
+  });
+
+  // Blog filter & search
+  const searchInput = document.getElementById('searchInput');
+  const categoryFilter = document.getElementById('categoryFilter');
+  const posts
