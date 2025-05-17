@@ -1,193 +1,311 @@
-<!DOCTYPE html><html lang="bn"><head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="The Dream Chaser - Masud Rana's Personal Website">
-  <meta name="keywords" content="Masud Rana, The Dream Chaser, Portfolio, Funny Channel">
-  <meta property="og:title" content="The Dream Chaser">
-  <meta property="og:description" content="Masud Rana's Personal Website and YouTube Presence">
-  <meta property="og:image" content="profile.jpg">
-  <title>The Dream Chaser</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" >
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Dream Chaser - Blog & Features</title>
   <style>
-    * {
+    /* Animate Gradient Background */
+    @keyframes gradientBG {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      scroll-behavior: smooth;
-    }body {
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to right, #111, #222);
-  color: #fff;
-  padding: 20px;
-}
+      /* Gradient background animation */
+      background: linear-gradient(270deg, #FF416C, #FF4B2B, #1FA2FF, #12D8FA, #A6FFCB);
+      background-size: 1000% 1000%;
+      animation: gradientBG 30s ease infinite;
+      color: #222;
+      transition: color 0.3s;
+      min-height: 100vh;
+    }
 
-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
+    a {
+      color: #0077cc;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
 
-.logo {
-  font-size: 3rem;
-  font-weight: bold;
-  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-  -webkit-background-clip: text;
-  color: transparent;
-  animation: blink 2s infinite;
-}
+    /* Container */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.85);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
 
-@keyframes blink {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.5;
-  }
-}
+    /* Logo */
+    header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    header h1 {
+      font-size: 4rem;
+      font-weight: 900;
+      background: linear-gradient(45deg, #FF416C, #FF4B2B);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin: 0;
+      user-select: none;
+      letter-spacing: 3px;
+      text-shadow: 1px 1px 4px rgba(255, 75, 43, 0.5);
+    }
 
-.profile {
-  text-align: center;
-}
+    /* Filter Buttons */
+    .filter-buttons {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    .filter-buttons button {
+      background: #FF416C;
+      border: none;
+      padding: 8px 18px;
+      margin: 5px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      color: white;
+      box-shadow: 0 4px 10px rgba(255,65,108,0.3);
+      transition: background-color 0.3s, transform 0.2s;
+    }
+    .filter-buttons button.active,
+    .filter-buttons button:hover {
+      background: #FF4B2B;
+      transform: scale(1.1);
+      box-shadow: 0 6px 15px rgba(255,75,43,0.5);
+    }
 
-.profile img {
-  border-radius: 50%;
-  width: 150px;
-  height: 150px;
-  margin-bottom: 10px;
-  border: 3px solid #fff;
-}
+    /* Search Input */
+    #searchInput {
+      width: 100%;
+      padding: 14px 20px;
+      margin-bottom: 25px;
+      font-size: 1rem;
+      border-radius: 30px;
+      border: 2px solid #FF416C;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 0 15px rgba(255, 65, 108, 0.4);
+    }
+    #searchInput:focus {
+      border-color: #FF4B2B;
+      box-shadow: 0 0 25px rgba(255, 75, 43, 0.7);
+    }
 
-.facebook-button {
-  display: inline-block;
-  margin-top: 10px;
-  padding: 10px 20px;
-  background-color: #1877f2;
-  color: #fff;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: bold;
-}
+    /* Blog Posts */
+    .blog-post {
+      background: white;
+      border-radius: 15px;
+      padding: 25px 25px 30px;
+      margin-bottom: 30px;
+      box-shadow: 0 8px 25px rgba(255, 75, 43, 0.15);
+      transition: box-shadow 0.3s;
+    }
+    .blog-post:hover {
+      box-shadow: 0 12px 40px rgba(255, 75, 43, 0.35);
+    }
+    .blog-post h3 {
+      margin-top: 0;
+      color: #FF416C;
+      letter-spacing: 1.5px;
+    }
+    .blog-post p {
+      line-height: 1.7;
+      font-size: 1.05rem;
+    }
 
-section {
-  margin: 40px 0;
-}
+    /* Comments Section */
+    #comments {
+      background: white;
+      padding: 30px 30px 35px;
+      border-radius: 15px;
+      margin-top: 50px;
+      box-shadow: 0 8px 25px rgba(255, 75, 43, 0.15);
+    }
+    #comments h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #FF416C;
+      letter-spacing: 1.5px;
+    }
+    #comments textarea,
+    #comments input[type="text"],
+    #comments input[type="email"] {
+      width: 100%;
+      padding: 15px 18px;
+      margin-bottom: 18px;
+      border-radius: 15px;
+      border: 2px solid #FF416C;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      resize: vertical;
+      box-shadow: 0 0 12px rgba(255, 65, 108, 0.25);
+      font-family: inherit;
+    }
+    #comments textarea:focus,
+    #comments input[type="text"]:focus,
+    #comments input[type="email"]:focus {
+      border-color: #FF4B2B;
+      box-shadow: 0 0 20px rgba(255, 75, 43, 0.6);
+    }
+    #comments button {
+      background: #FF416C;
+      color: white;
+      border: none;
+      padding: 15px 35px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 1.1rem;
+      transition: background-color 0.3s, box-shadow 0.3s;
+      box-shadow: 0 6px 18px rgba(255, 65, 108, 0.4);
+    }
+    #comments button:hover {
+      background: #d83656;
+      box-shadow: 0 8px 25px rgba(216, 54, 86, 0.7);
+    }
 
-.section-title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #fff;
-  display: inline-block;
-}
+    /* Comments List */
+    #commentList {
+      margin-top: 25px;
+    }
+    #commentList div {
+      background: #ffe6ea;
+      padding: 15px 20px;
+      border-radius: 12px;
+      margin-bottom: 15px;
+      box-shadow: 0 4px 12px rgba(255, 65, 108, 0.15);
+      font-size: 1rem;
+      color: #5a212f;
+      word-wrap: break-word;
+    }
 
-.testimonial {
-  background: #333;
-  padding: 15px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.lightbox img {
-  width: 100%;
-  max-width: 300px;
-  border: 2px solid #fff;
-  margin: 10px;
-  cursor: pointer;
-}
-
-.skills-bar {
-  background: #444;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-bottom: 10px;
-}
-
-.skills-bar span {
-  display: block;
-  height: 20px;
-  background-color: limegreen;
-}
-
-.contact input,
-.contact textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
-  border: none;
-}
-
-.contact button {
-  padding: 10px 20px;
-  background: limegreen;
-  border: none;
-  color: #000;
-  font-weight: bold;
-  border-radius: 5px;
-}
-
-.back-to-top {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: #fff;
-  color: #000;
-  padding: 10px 15px;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.toggle-mode {
-  position: fixed;
-  top: 20px;
-  right: 20px;
-  background: #555;
-  color: #fff;
-  padding: 10px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
+    /* Responsive */
+    @media(max-width: 600px) {
+      header h1 {
+        font-size: 3rem;
+      }
+      .filter-buttons button {
+        padding: 8px 12px;
+        margin: 4px;
+        font-size: 0.9rem;
+      }
+    }
   </style>
-</head><body>
-  <div class="toggle-mode" onclick="toggleMode()">ডার্ক/লাইট</div>
-  <header>
-    <h1 class="logo">The Dream Chaser</h1>
-  </header>  <div class="profile">
-    <img src="profile.jpg" alt="Masud Rana">
-    <p>আমি Masud Rana, একজন স্বপ্নবাজ তরুণ।</p>
-    <a href="https://facebook.com/masudrana" class="facebook-button" target="_blank">Facebook এ যান</a>
-  </div>  <section>
-    <h2 class="section-title">AI Image Generator</h2>
-    <iframe src="https://huggingface.co/spaces/your-ai-image-generator" width="100%" height="400"></iframe>
-    <p>ছবিটি জেনারেট করার পর ডাউনলোড করে নিতে ভুলবেন না।</p>
-  </section>  <section>
-    <h2 class="section-title">Testimonials</h2>
-    <div class="testimonial">এই ওয়েবসাইট দেখে আমি মুগ্ধ! - রফিকুল ইসলাম</div>
-    <div class="testimonial">Masud ভাইয়ের কাজ অসাধারণ। - নাসরিন সুলতানা</div>
-    <div class="testimonial">এই প্রজেক্টটা অনেক অনুপ্রেরণাদায়ক। - শাওন মিয়া</div>
-    <div class="testimonial">আমি নিজেও এমন কিছু বানাতে চাই। - ফারজানা ইয়াসমিন</div>
-  </section>  <section>
-    <h2 class="section-title">Image Gallery</h2>
-    <div class="lightbox">
-      <img src="img1.jpg" alt="image 1">
-      <img src="img2.jpg" alt="image 2">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>The Dream Chaser</h1>
+    </header>
+
+    <!-- Search Bar -->
+    <input type="text" id="searchInput" onkeyup="searchPosts()" placeholder="Search blog posts..." />
+
+    <!-- Blog Category Filter -->
+    <div class="filter-buttons">
+      <button class="active" onclick="filterCategory('all', this)">All</button>
+      <button onclick="filterCategory('motivation', this)">Motivation</button>
+      <button onclick="filterCategory('success', this)">Success</button>
+      <button onclick="filterCategory('inspiration', this)">Inspiration</button>
+      <button onclick="filterCategory('life', this)">Life</button>
     </div>
-  </section>  <section>
-    <h2 class="section-title">Skills</h2>
-    <div>HTML <div class="skills-bar"><span style="width: 90%"></span></div></div>
-    <div>CSS <div class="skills-bar"><span style="width: 85%"></span></div></div>
-    <div>JavaScript <div class="skills-bar"><span style="width: 75%"></span></div></div>
-  </section>  <section class="contact">
-    <h2 class="section-title">যোগাযোগ করুন</h2>
-    <input type="text" placeholder="আপনার নাম">
-    <input type="email" placeholder="আপনার ইমেইল">
-    <textarea rows="5" placeholder="বার্তা"></textarea>
-    <button>পাঠান</button>
-  </section>  <div class="back-to-top" onclick="scrollToTop()">↑</div>  <script>
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    <!-- Blog Posts -->
+    <div id="blogPosts">
+      <div class="blog-post" data-category="motivation">
+        <h3>নিজেকে উৎসাহিত রাখার উপায়</h3>
+        <p>প্রতিদিন নিজেকে নতুন করে উৎসাহিত করতে হলে নিজের লক্ষ্য স্পষ্ট থাকা জরুরি।</p>
+      </div>
+      <div class="blog-post" data-category="success">
+        <h3>সাফল্যের পথে ছোট ছোট ধাপ</h3>
+        <p>সাফল্য অর্জন করতে হলে ধৈর্য্য ধরে ধাপে ধাপে কাজ করতে হয়।</p>
+      </div>
+      <div class="blog-post" data-category="inspiration">
+        <h3>অনুপ্রেরণার গল্প</h3>
+        <p>অনুপ্রেরণামূলক মানুষের গল্প শুনে আমরা নিজেদের জীবনকে নতুন দিশা দিতে পারি।</p>
+      </div>
+      <div class="blog-post" data-category="life">
+        <h3>জীবনের মূল্যবান পাঠ</h3>
+        <p>জীবন থেকে শিখতে পারা হলো সবচেয়ে বড় সম্পদ।</p>
+      </div>
+      <div class="blog-post" data-category="motivation">
+        <h3>প্রতিদিনের অনুপ্রেরণা</h3>
+        <p>কীভাবে প্রতিদিন নিজের অনুপ্রেরণা ধরে রাখবে তার কিছু চমৎকার টিপস।</p>
+      </div>
+    </div>
+
+    <!-- Comment Box -->
+    <section id="comments">
+      <h3>মন্তব্য লিখুন</h3>
+      <form id="commentForm" onsubmit="submitComment(event)">
+        <textarea id="commentText" placeholder="আপনার মন্তব্য লিখুন..." rows="4" required></textarea>
+        <input type="text" id="commentName" placeholder="আপনার নাম" required />
+        <input type="email" id="commentEmail" placeholder="আপনার ইমেইল" required />
+        <button type="submit">মন্তব্য পাঠান</button>
+      </form>
+      <div id="commentList"></div>
+    </section>
+  </div>
+
+  <script>
+    // Filter Categories
+    function filterCategory(category, btn) {
+      document.querySelectorAll('.filter-buttons button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const posts = document.querySelectorAll('.blog-post');
+      posts.forEach(post => {
+        if(category === 'all' || post.dataset.category === category) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
     }
 
-    function toggleMode() {
-      document.body.classList.toggle('light-mode');
+    // Search Functionality
+    function searchPosts() {
+      const input = document.getElementById('searchInput').value.toLowerCase();
+      const posts = document.querySelectorAll('.blog-post');
+      posts.forEach(post => {
+        const title = post.querySelector('h3').textContent.toLowerCase();
+        const content = post.querySelector('p').textContent.toLowerCase();
+        if(title.includes(input) || content.includes(input)) {
+          post.style.display = 'block';
+        } else {
+          post.style.display = 'none';
+        }
+      });
     }
-  </script></body></html>
+
+    // Comment Form Submit
+    function submitComment(e) {
+      e.preventDefault();
+      const text = document.getElementById('commentText').value.trim();
+      const name = document.getElementById('commentName').value.trim();
+      const email = document.getElementById('commentEmail').value.trim();
+
+      if(text && name && email) {
+        const commentList = document.getElementById('commentList');
+
+        const commentDiv = document.createElement('div');
+        commentDiv.textContent = `${name} says: ${text}`;
+        commentList.prepend(commentDiv);
