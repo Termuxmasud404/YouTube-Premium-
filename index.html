@@ -1,269 +1,193 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!DOCTYPE html><html lang="bn"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Dream Chaser - Masud Rana's Personal Website">
+  <meta name="keywords" content="Masud Rana, The Dream Chaser, Portfolio, Funny Channel">
+  <meta property="og:title" content="The Dream Chaser">
+  <meta property="og:description" content="Masud Rana's Personal Website and YouTube Presence">
+  <meta property="og:image" content="profile.jpg">
   <title>The Dream Chaser</title>
-
-  <!-- AOS & Typed.js -->
-  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet">
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      transition: 0.3s;
-    }
-    .light-mode {
-      background: #f0f0f0;
-      color: #000;
-    }
-    .dark-mode {
-      background: #121212;
-      color: white;
-    }
-    header {
-      padding: 40px 20px 20px;
-      text-align: center;
-    }
-    .logo {
-      font-size: 3.5em;
-      font-weight: bold;
-      background: linear-gradient(90deg, #ff6a00, #ee0979, #00c9ff, #92fe9d);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    #clockBox {
-      font-size: 18px;
-      margin: 10px;
-    }
-    #visitorCount {
-      color: green;
-      font-weight: bold;
-    }
-    input, button {
-      padding: 10px;
-      margin: 10px;
-    }
-    ul {
-      list-style: none;
       padding: 0;
-    }
-    li {
-      background: #fff;
-      color: #000;
-      margin: 5px auto;
-      padding: 10px;
-      width: 60%;
-      border-radius: 5px;
-      text-align: left;
-    }
-    .dark-mode li {
-      background: #333;
-      color: white;
-    }
-    /* Testimonials */
-    .testimonials {
-      padding: 40px 20px;
-      text-align: center;
-    }
-    .testimonial-box {
-      background: #fff;
-      color: #000;
-      padding: 20px;
-      margin: 20px auto;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 600px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .dark-mode .testimonial-box {
-      background: #2a2a2a;
-      color: #fff;
-    }
-    .testimonial-name {
-      margin-top: 10px;
-      font-weight: bold;
-      color: #ff4081;
-    }
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to right, #111, #222);
+  color: #fff;
+  padding: 20px;
+}
 
-    /* Back to Top Button */
-    #backToTop {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      padding: 10px 15px;
-      background: #333;
-      color: #fff;
-      border: none;
-      border-radius: 5px;
-      display: none;
-      cursor: pointer;
-    }
-    /* Scroll Progress Bar */
-    #progressBar {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: #00bcd4;
-      width: 0%;
-      z-index: 9999;
-    }
+header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.logo {
+  font-size: 3rem;
+  font-weight: bold;
+  background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
+  -webkit-background-clip: text;
+  color: transparent;
+  animation: blink 2s infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.profile {
+  text-align: center;
+}
+
+.profile img {
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  margin-bottom: 10px;
+  border: 3px solid #fff;
+}
+
+.facebook-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #1877f2;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+section {
+  margin: 40px 0;
+}
+
+.section-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #fff;
+  display: inline-block;
+}
+
+.testimonial {
+  background: #333;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.lightbox img {
+  width: 100%;
+  max-width: 300px;
+  border: 2px solid #fff;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.skills-bar {
+  background: #444;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.skills-bar span {
+  display: block;
+  height: 20px;
+  background-color: limegreen;
+}
+
+.contact input,
+.contact textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  border: none;
+}
+
+.contact button {
+  padding: 10px 20px;
+  background: limegreen;
+  border: none;
+  color: #000;
+  font-weight: bold;
+  border-radius: 5px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #fff;
+  color: #000;
+  padding: 10px 15px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.toggle-mode {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #555;
+  color: #fff;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
   </style>
-</head>
-<body class="light-mode">
-
-  <!-- Scroll Progress -->
-  <div id="progressBar"></div>
-
-  <!-- Header -->
+</head><body>
+  <div class="toggle-mode" onclick="toggleMode()">ডার্ক/লাইট</div>
   <header>
-    <div class="logo" data-aos="fade-down">THE DREAM CHASER</div>
-    <h3><span id="typed"></span></h3>
-
-    <div id="clockBox">
-      <span id="date"></span> | <span id="time"></span>
+    <h1 class="logo">The Dream Chaser</h1>
+  </header>  <div class="profile">
+    <img src="profile.jpg" alt="Masud Rana">
+    <p>আমি Masud Rana, একজন স্বপ্নবাজ তরুণ।</p>
+    <a href="https://facebook.com/masudrana" class="facebook-button" target="_blank">Facebook এ যান</a>
+  </div>  <section>
+    <h2 class="section-title">AI Image Generator</h2>
+    <iframe src="https://huggingface.co/spaces/your-ai-image-generator" width="100%" height="400"></iframe>
+    <p>ছবিটি জেনারেট করার পর ডাউনলোড করে নিতে ভুলবেন না।</p>
+  </section>  <section>
+    <h2 class="section-title">Testimonials</h2>
+    <div class="testimonial">এই ওয়েবসাইট দেখে আমি মুগ্ধ! - রফিকুল ইসলাম</div>
+    <div class="testimonial">Masud ভাইয়ের কাজ অসাধারণ। - নাসরিন সুলতানা</div>
+    <div class="testimonial">এই প্রজেক্টটা অনেক অনুপ্রেরণাদায়ক। - শাওন মিয়া</div>
+    <div class="testimonial">আমি নিজেও এমন কিছু বানাতে চাই। - ফারজানা ইয়াসমিন</div>
+  </section>  <section>
+    <h2 class="section-title">Image Gallery</h2>
+    <div class="lightbox">
+      <img src="img1.jpg" alt="image 1">
+      <img src="img2.jpg" alt="image 2">
     </div>
-    <div>
-      Visitors Count: <span id="visitorCount">Loading...</span>
-    </div>
-    <button onclick="toggleMode()">Toggle Dark/Light Mode</button>
-  </header>
-
-  <!-- Testimonials -->
-  <section class="testimonials" data-aos="fade-up">
-    <h2>Testimonial</h2>
-    
-    <div class="testimonial-box">
-      "Masud ভাইয়ের কাজ দেখে আমি সত্যিই মুগ্ধ। তিনি একজন প্রকৃত ড্রিম চেজার।"
-      <div class="testimonial-name">— রফিকুল ইসলাম</div>
-    </div>
-
-    <div class="testimonial-box">
-      "আমি Masud এর ভিডিও থেকে অনেক কিছু শিখেছি। সে অনুপ্রেরণাদায়ক।"
-      <div class="testimonial-name">— সানজিদা আক্তার</div>
-    </div>
-
-    <div class="testimonial-box">
-      "তার ওয়েবসাইট খুবই সুন্দর ও প্রফেশনাল।"
-      <div class="testimonial-name">— আরিফ হোসেন</div>
-    </div>
-
-    <div class="testimonial-box">
-      "Masud ভাইয়ের সাথে কাজ করতে পারাটা অনেক বড় পাওয়া।"
-      <div class="testimonial-name">— মাহফুজ রানা</div>
-    </div>
-  </section>
-
-  <!-- Comments -->
-  <section data-aos="fade-up">
-    <h2>Comments</h2>
-    <input type="text" id="commentInput" placeholder="Write a comment..."/>
-    <button onclick="postComment()">Post</button>
-    <ul id="commentsList"></ul>
-  </section>
-
-  <!-- Back to Top Button -->
-  <button id="backToTop" onclick="scrollToTop()">Top</button>
-
-  <!-- Background Music -->
-  <audio autoplay loop>
-    <source src="https://www.bensound.com/bensound-music/bensound-dreams.mp3" type="audio/mpeg">
-    Your browser does not support audio.
-  </audio>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
-
-  <!-- AOS -->
-  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-
-  <script>
-    AOS.init();
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyAVjsiTMbEt6waEBu-s4FpvSlDlrBtIRR8",
-      authDomain: "the-dream-chaser-project.firebaseapp.com",
-      projectId: "the-dream-chaser-project",
-      storageBucket: "the-dream-chaser-project.firebasestorage.app",
-      messagingSenderId: "163574465822",
-      appId: "1:163574465822:web:07c19784b944f2778d350f"
-    };
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    function postComment() {
-      const comment = document.getElementById('commentInput').value;
-      if (comment.trim() === '') return alert('Please write something!');
-      const key = db.ref().child('comments').push().key;
-      db.ref('comments/' + key).set({ text: comment, timestamp: Date.now() });
-      document.getElementById('commentInput').value = '';
+  </section>  <section>
+    <h2 class="section-title">Skills</h2>
+    <div>HTML <div class="skills-bar"><span style="width: 90%"></span></div></div>
+    <div>CSS <div class="skills-bar"><span style="width: 85%"></span></div></div>
+    <div>JavaScript <div class="skills-bar"><span style="width: 75%"></span></div></div>
+  </section>  <section class="contact">
+    <h2 class="section-title">যোগাযোগ করুন</h2>
+    <input type="text" placeholder="আপনার নাম">
+    <input type="email" placeholder="আপনার ইমেইল">
+    <textarea rows="5" placeholder="বার্তা"></textarea>
+    <button>পাঠান</button>
+  </section>  <div class="back-to-top" onclick="scrollToTop()">↑</div>  <script>
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
-    const commentsList = document.getElementById('commentsList');
-    db.ref('comments').on('value', snapshot => {
-      commentsList.innerHTML = '';
-      const comments = snapshot.val();
-      for (let key in comments) {
-        const li = document.createElement('li');
-        li.innerText = comments[key].text;
-        commentsList.appendChild(li);
-      }
-    });
-
-    // Visitor Counter
-    fetch('https://api.countapi.xyz/hit/the-dream-chaser/visits')
-      .then(res => res.json())
-      .then(data => {
-        document.getElementById('visitorCount').innerText = data.value;
-      });
-
-    // Clock
-    function updateClock() {
-      const now = new Date();
-      document.getElementById('date').textContent = now.toLocaleDateString();
-      document.getElementById('time').textContent = now.toLocaleTimeString();
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
-
-    // Dark/Light Mode
     function toggleMode() {
-      document.body.classList.toggle('dark-mode');
       document.body.classList.toggle('light-mode');
     }
-
-    // Back to Top
-    window.onscroll = function () {
-      const btn = document.getElementById("backToTop");
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      btn.style.display = scrollTop > 300 ? "block" : "none";
-
-      // Scroll progress bar
-      const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-      const scrollProgress = (scrollTop / scrollHeight) * 100;
-      document.getElementById("progressBar").style.width = scrollProgress + "%";
-    };
-    function scrollToTop() {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // Typed.js Effect
-    const typed = new Typed("#typed", {
-      strings: ["স্বপ্ন দেখো, গড়ো নিজের জগৎ", "Never stop dreaming", "Believe in yourself, chase your dream"],
-      typeSpeed: 50,
-      backSpeed: 25,
-      loop: true
-    });
-  </script>
-</body>
-</html>
+  </script></body></html>
